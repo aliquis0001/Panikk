@@ -15,8 +15,10 @@ module.exports = class Panikk extends Plugin {
   }
   keyup(event) {
     if (event.key == 'F5') {
-      powercord.styleManager.themes.forEach((f) =>
-        powercord.styleManager.disable(f.entityID)
+      powercord.styleManager.themes.forEach((f) => {
+	if(f.applied) powercord.styleManager.disable(f.entityID);
+	else powercord.styleManager.enable(f.entityID);
+	}
       );
     }
   }
